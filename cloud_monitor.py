@@ -115,7 +115,14 @@ class CloudTelegramMonitor:
                 if os.path.exists(f"{self.session_name}.session"):
                     logger.info("📁 נמצא קובץ session קיים")
                 
-                await self.client.start(phone=self.phone)
+                # בדיקה אם יש קוד אימות במשתני סביבה
+                auth_code = os.getenv("AUTH_CODE")
+                if auth_code:
+                    logger.info(f"🔐 משתמש בקוד אימות: {auth_code}")
+                    await self.client.start(phone=self.phone, code=auth_code)
+                else:
+                    await self.client.start(phone=self.phone)
+                    
                 logger.info("✅ התחברות הצליחה!")
                 return
                 
@@ -127,7 +134,8 @@ class CloudTelegramMonitor:
                 if "EOF when reading a line" in error_msg:
                     logger.warning("⚠️ נדרש אימות ראשוני")
                     logger.info("📱 שלח הודעה לטלגרם עם קוד אימות")
-                    logger.info("🔐 הזן את הקוד בלוגים של Railway")
+                    logger.info("🔐 הוסף משתנה סביבה AUTH_CODE עם הקוד")
+                    logger.info("🔐 או הזן את הקוד בלוגים של Railway")
                     
                     # נסה שוב אחרי המתנה ארוכה יותר
                     wait_time = (attempt + 1) * 10
