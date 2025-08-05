@@ -78,6 +78,7 @@ class SimpleWebMonitor:
         app.router.add_get('/', self.home_page)
         app.router.add_post('/auth', self.handle_auth)
         app.router.add_get('/status', self.get_status)
+        app.router.add_post('/restart', self.restart_system) # Add restart route
         
         # הפעלת שרת
         runner = web.AppRunner(app)
@@ -106,7 +107,7 @@ class SimpleWebMonitor:
                     color: #333;
                 }
                 .container {
-                    max-width: 600px;
+                    max-width: 800px;
                     margin: 0 auto;
                     background: white;
                     border-radius: 10px;
@@ -150,6 +151,10 @@ class SimpleWebMonitor:
                     border-radius: 8px;
                     padding: 25px;
                     margin-bottom: 20px;
+                    display: none;
+                }
+                .auth-section.show {
+                    display: block;
                 }
                 .auth-section h3 {
                     margin-top: 0;
@@ -184,8 +189,8 @@ class SimpleWebMonitor:
                     border-radius: 8px;
                     font-size: 18px;
                     cursor: pointer;
-                    width: 100%;
-                    margin-top: 10px;
+                    margin: 5px;
+                    min-width: 150px;
                 }
                 .btn:hover {
                     background: #1557b0;
@@ -193,6 +198,16 @@ class SimpleWebMonitor:
                 .btn:disabled {
                     background: #ccc;
                     cursor: not-allowed;
+                }
+                .btn-success {
+                    background: #28a745;
+                }
+                .btn-warning {
+                    background: #ffc107;
+                    color: #333;
+                }
+                .btn-danger {
+                    background: #dc3545;
                 }
                 .message {
                     padding: 15px;
@@ -225,6 +240,39 @@ class SimpleWebMonitor:
                     margin-top: 0;
                     color: #495057;
                 }
+                .auth-steps {
+                    background: #fff3cd;
+                    border: 1px solid #ffeaa7;
+                    border-radius: 8px;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                }
+                .auth-steps h4 {
+                    margin-top: 0;
+                    color: #856404;
+                }
+                .auth-steps ol {
+                    margin: 0;
+                    padding-right: 20px;
+                }
+                .auth-steps li {
+                    margin-bottom: 10px;
+                    line-height: 1.5;
+                }
+                .connection-info {
+                    background: #e3f2fd;
+                    border: 1px solid #2196f3;
+                    border-radius: 8px;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                }
+                .connection-info h4 {
+                    margin-top: 0;
+                    color: #1976d2;
+                }
+                .connection-info p {
+                    margin: 5px 0;
+                }
             </style>
         </head>
         <body>
@@ -238,25 +286,44 @@ class SimpleWebMonitor:
                     <h3>📊 סטטוס המערכת</h3>
                     <p id="status-text">טוען...</p>
                     <p>📱 טלפון: """ + self.phone + """</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <button class="btn btn-success" onclick="showAuthSection()">🔐 מצב התחברות</button>
+                        <button class="btn" onclick="refreshStatus()">🔄 רענן סטטוס</button>
+                        <button class="btn btn-warning" onclick="restartSystem()">🔄 הפעל מחדש</button>
+                    </div>
                 </div>
                 
-                <div class="auth-section">
-                    <h3>🔐 התחברות לטלגרם</h3>
-                    <p><strong>הוראות:</strong></p>
-                    <ol>
-                        <li>שלח הודעה לטלגרם עם קוד אימות</li>
-                        <li>הזן את הקוד בשדה למטה</li>
-                        <li>לחץ על "התחבר"</li>
-                    </ol>
+                <div class="auth-section" id="auth-section">
+                    <h3>🔐 אזור התחברות מלא</h3>
+                    
+                    <div class="connection-info">
+                        <h4>📋 מידע התחברות</h4>
+                        <p><strong>טלפון:</strong> """ + self.phone + """</p>
+                        <p><strong>API ID:</strong> """ + self.api_id + """</p>
+                        <p><strong>קבוצות במעקב:</strong> 4 קבוצות</p>
+                        <p><strong>וובהוק:</strong> פעיל</p>
+                    </div>
+                    
+                    <div class="auth-steps">
+                        <h4>📝 הוראות התחברות</h4>
+                        <ol>
+                            <li><strong>שלח הודעה לטלגרם</strong> עם קוד אימות (5 ספרות)</li>
+                            <li><strong>הזן את הקוד</strong> בשדה למטה</li>
+                            <li><strong>לחץ על "התחבר"</strong> כדי להתחיל</li>
+                            <li><strong>חכה לאישור</strong> שההתחברות הצליחה</li>
+                        </ol>
+                    </div>
                     
                     <form id="auth-form">
                         <div class="form-group">
-                            <label for="auth-code">קוד אימות:</label>
+                            <label for="auth-code">🔢 קוד אימות (5 ספרות):</label>
                             <input type="text" id="auth-code" name="auth_code" 
-                                   placeholder="הזן את הקוד שקיבלת מטלגרם" 
-                                   maxlength="6" autocomplete="off">
+                                   placeholder="הזן את הקוד שקיבלת מטלגרם (לדוגמה: 12345)" 
+                                   maxlength="6" autocomplete="off" pattern="[0-9]{5,6}">
                         </div>
-                        <button type="submit" class="btn" id="auth-btn">🔐 התחבר</button>
+                        <button type="submit" class="btn btn-success" id="auth-btn">🔐 התחבר לטלגרם</button>
+                        <button type="button" class="btn btn-danger" onclick="hideAuthSection()">❌ סגור</button>
                     </form>
                     
                     <div id="auth-message"></div>
@@ -266,12 +333,23 @@ class SimpleWebMonitor:
                     <h4>📈 סטטיסטיקות</h4>
                     <p>📨 הודעות שנשלחו: <span id="message-count">0</span></p>
                     <p>🕒 הודעה אחרונה: <span id="last-message">אין</span></p>
+                    <p>🔗 סטטוס וובהוק: <span id="webhook-status">בדיקה...</span></p>
                 </div>
             </div>
             
             <script>
                 // רענון אוטומטי כל 3 שניות
                 setInterval(refreshStatus, 3000);
+                
+                function showAuthSection() {
+                    document.getElementById('auth-section').classList.add('show');
+                    document.getElementById('auth-code').focus();
+                }
+                
+                function hideAuthSection() {
+                    document.getElementById('auth-section').classList.remove('show');
+                    document.getElementById('auth-message').innerHTML = '';
+                }
                 
                 async function refreshStatus() {
                     try {
@@ -282,6 +360,7 @@ class SimpleWebMonitor:
                         const statusText = document.getElementById('status-text');
                         const messageCount = document.getElementById('message-count');
                         const lastMessage = document.getElementById('last-message');
+                        const webhookStatus = document.getElementById('webhook-status');
                         
                         // עדכון סטטוס
                         statusText.textContent = data.status;
@@ -293,8 +372,41 @@ class SimpleWebMonitor:
                         messageCount.textContent = data.message_count;
                         lastMessage.textContent = data.last_message || 'אין';
                         
+                        // עדכון סטטוס וובהוק
+                        if (data.is_connected) {
+                            webhookStatus.textContent = '✅ פעיל';
+                            webhookStatus.style.color = '#28a745';
+                        } else {
+                            webhookStatus.textContent = '❌ לא פעיל';
+                            webhookStatus.style.color = '#dc3545';
+                        }
+                        
+                        // הצגת אזור התחברות אם נדרש
+                        if (data.needs_auth) {
+                            showAuthSection();
+                            showMessage('⚠️ נדרש קוד אימות - שלח הודעה לטלגרם', 'info');
+                        }
+                        
                     } catch (error) {
                         console.error('שגיאה ברענון סטטוס:', error);
+                    }
+                }
+                
+                async function restartSystem() {
+                    if (confirm('האם אתה בטוח שברצונך להפעיל מחדש את המערכת?')) {
+                        try {
+                            const response = await fetch('/restart', { method: 'POST' });
+                            const result = await response.json();
+                            
+                            if (result.success) {
+                                showMessage('🔄 המערכת מופעלת מחדש...', 'info');
+                                setTimeout(refreshStatus, 2000);
+                            } else {
+                                showMessage('❌ שגיאה בהפעלה מחדש: ' + result.error, 'error');
+                            }
+                        } catch (error) {
+                            showMessage('❌ שגיאה בהפעלה מחדש', 'error');
+                        }
                     }
                 }
                 
@@ -307,14 +419,19 @@ class SimpleWebMonitor:
                     const authMessage = document.getElementById('auth-message');
                     
                     if (!authCode) {
-                        showMessage('אנא הזן קוד אימות', 'error');
+                        showMessage('❌ אנא הזן קוד אימות', 'error');
+                        return;
+                    }
+                    
+                    if (!/^[0-9]{5,6}$/.test(authCode)) {
+                        showMessage('❌ הקוד חייב להיות 5-6 ספרות', 'error');
                         return;
                     }
                     
                     // הצגת טעינה
                     authBtn.disabled = true;
                     authBtn.textContent = '⏳ מתחבר...';
-                    showMessage('מתחבר לטלגרם...', 'info');
+                    showMessage('⏳ מתחבר לטלגרם...', 'info');
                     
                     try {
                         const response = await fetch('/auth', {
@@ -330,7 +447,10 @@ class SimpleWebMonitor:
                         if (result.success) {
                             showMessage('✅ התחברות הצליחה! המערכת עובדת', 'success');
                             document.getElementById('auth-code').value = '';
-                            refreshStatus();
+                            setTimeout(() => {
+                                hideAuthSection();
+                                refreshStatus();
+                            }, 2000);
                         } else {
                             showMessage('❌ שגיאה בהתחברות: ' + result.error, 'error');
                         }
@@ -339,7 +459,7 @@ class SimpleWebMonitor:
                     } finally {
                         // החזרת כפתור למצב רגיל
                         authBtn.disabled = false;
-                        authBtn.textContent = '🔐 התחבר';
+                        authBtn.textContent = '🔐 התחבר לטלגרם';
                     }
                 });
                 
@@ -596,6 +716,23 @@ class SimpleWebMonitor:
         except Exception as e:
             logger.error(f"❌ שגיאה בשליחת וובהוק: {e}")
             return False
+    
+    async def restart_system(self, request):
+        """הפעלה מחדש של המערכת"""
+        try:
+            logger.info("🔄 מתחיל מחדש את המערכת...")
+            
+            # איפוס משתנים
+            self.is_connected = False
+            self.needs_auth = False
+            
+            # ניסיון התחברות מחדש
+            await self.connect_with_retry()
+            
+            return web.json_response({'success': True})
+        except Exception as e:
+            logger.error(f"❌ שגיאה בהפעלה מחדש: {e}")
+            return web.json_response({'success': False, 'error': str(e)})
     
     async def cleanup(self):
         """ניקוי ומתנתקות"""
