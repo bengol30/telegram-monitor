@@ -1,0 +1,1 @@
+worker: python3 stable_monitor.py 

@@ -1,0 +1,212 @@
+2025-08-04 17:17:33,128 - telegram_monitor - INFO - מסד נתונים אותחל בהצלחה
+2025-08-04 17:17:33,128 - telethon.network.mtprotosender - INFO - Connecting to 149.154.167.51:443/TcpFull...
+2025-08-04 17:17:35,439 - telethon.network.mtprotosender - INFO - Connection to 149.154.167.51:443/TcpFull complete!
+2025-08-04 17:17:36,121 - telethon.client.users - INFO - Phone migrated to 4
+2025-08-04 17:17:36,262 - telethon.client.telegrambaseclient - INFO - Reconnecting to new data center 4
+2025-08-04 17:17:36,395 - telethon.network.mtprotosender - INFO - Disconnecting from 149.154.167.51:443/TcpFull...
+2025-08-04 17:17:36,396 - telethon.network.mtprotosender - INFO - Disconnection from 149.154.167.51:443/TcpFull complete!
+2025-08-04 17:17:36,396 - telethon.network.mtprotosender - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 17:17:37,845 - telethon.network.mtprotosender - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 17:18:13,348 - telethon.network.mtprotosender - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
+2025-08-04 17:18:13,349 - telethon.network.mtprotosender - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-08-04 17:18:27,586 - telegram_monitor - INFO - מסד נתונים אותחל בהצלחה
+2025-08-04 17:18:27,586 - telethon.network.mtprotosender - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 17:18:27,661 - telethon.network.mtprotosender - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 17:19:31,439 - telethon.network.mtprotosender - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
+2025-08-04 17:19:31,440 - telethon.network.mtprotosender - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:04:56,269 - INFO - 🚀 מתחיל מעקב מהיר...
+2025-08-04 20:04:56,270 - INFO - 📱 מתחבר לטלגרם... (ניסיון 1/5)
+2025-08-04 20:04:56,270 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 20:04:56,347 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:04:56,801 - INFO - ✅ התחברות הצליחה!
+2025-08-04 20:04:56,801 - INFO - 📋 קבוצות במעקב:
+2025-08-04 20:04:56,917 - INFO -    📱 Forex.Daddy SILVER (ID: -1002633249593)
+2025-08-04 20:04:57,061 - INFO -    📱 ynet חדשות (ID: -1001397114707)
+2025-08-04 20:04:57,224 - INFO -    📱 צופר - צבע אדום (ID: -1001436772127)
+2025-08-04 20:04:57,389 - INFO -    📱 קבוצה לבדיקה (ID: -4911850781)
+2025-08-04 20:04:57,389 - INFO - 🎧 מאזין מהיר הותקן
+2025-08-04 20:04:57,389 - INFO - ⚡ הסקריפט עובד במהירות גבוהה!
+2025-08-04 20:04:57,389 - INFO - 📱 שלח הודעה בקבוצה כדי לבדוק
+2025-08-04 20:05:21,889 - INFO - 🚀 מתחיל מעקב מהיר...
+2025-08-04 20:05:21,889 - INFO - 📱 מתחבר לטלגרם... (ניסיון 1/5)
+2025-08-04 20:05:21,890 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 20:05:21,969 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:05:27,227 - ERROR - ❌ שגיאה בהתחברות: database is locked
+2025-08-04 20:05:32,229 - INFO - 📱 מתחבר לטלגרם... (ניסיון 2/5)
+2025-08-04 20:05:37,671 - ERROR - ❌ שגיאה בהתחברות: database is locked
+2025-08-04 20:05:42,672 - INFO - 📱 מתחבר לטלגרם... (ניסיון 3/5)
+2025-08-04 20:05:48,059 - ERROR - ❌ שגיאה בהתחברות: database is locked
+2025-08-04 20:05:53,060 - INFO - 📱 מתחבר לטלגרם... (ניסיון 4/5)
+2025-08-04 20:05:56,893 - INFO - 📴 מקבל סיגנל עצירה...
+2025-08-04 20:05:56,893 - INFO - ✅ התחברות הצליחה!
+2025-08-04 20:05:56,894 - INFO - 📋 קבוצות במעקב:
+2025-08-04 20:05:56,988 - INFO -    📱 Forex.Daddy SILVER (ID: -1002633249593)
+2025-08-04 20:05:57,076 - INFO -    📱 ynet חדשות (ID: -1001397114707)
+2025-08-04 20:05:57,157 - INFO -    📱 צופר - צבע אדום (ID: -1001436772127)
+2025-08-04 20:05:57,246 - INFO -    📱 קבוצה לבדיקה (ID: -4911850781)
+2025-08-04 20:05:57,246 - INFO - 🎧 מאזין מהיר הותקן
+2025-08-04 20:05:57,246 - INFO - ⚡ הסקריפט עובד במהירות גבוהה!
+2025-08-04 20:05:57,246 - INFO - 📱 שלח הודעה בקבוצה כדי לבדוק
+2025-08-04 20:05:57,246 - INFO - 🧹 מנקה ומתנתק...
+2025-08-04 20:05:57,246 - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
+2025-08-04 20:05:57,247 - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:05:57,248 - INFO - 👋 הסקריפט נעצר
+2025-08-04 20:08:16,009 - INFO - 🚀 מתחיל מעקב יציב...
+2025-08-04 20:08:16,009 - INFO - 📱 מתחבר לטלגרם...
+2025-08-04 20:08:16,009 - INFO - Connecting to 149.154.167.51:443/TcpFull...
+2025-08-04 20:08:17,427 - INFO - Connection to 149.154.167.51:443/TcpFull complete!
+2025-08-04 20:08:17,825 - INFO - Phone migrated to 4
+2025-08-04 20:08:17,904 - INFO - Reconnecting to new data center 4
+2025-08-04 20:08:17,987 - INFO - Disconnecting from 149.154.167.51:443/TcpFull...
+2025-08-04 20:08:17,988 - INFO - Disconnection from 149.154.167.51:443/TcpFull complete!
+2025-08-04 20:08:17,989 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 20:08:19,798 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:08:35,217 - INFO - 📴 מקבל סיגנל עצירה...
+2025-08-04 20:12:33,624 - INFO - 🚀 מתחיל מעקב יציב...
+2025-08-04 20:12:33,624 - INFO - 📱 מתחבר לטלגרם...
+2025-08-04 20:12:33,624 - INFO - Connecting to 149.154.167.51:443/TcpFull...
+2025-08-04 20:12:35,228 - INFO - Connection to 149.154.167.51:443/TcpFull complete!
+2025-08-04 20:12:35,650 - INFO - Phone migrated to 4
+2025-08-04 20:12:35,732 - INFO - Reconnecting to new data center 4
+2025-08-04 20:12:35,824 - INFO - Disconnecting from 149.154.167.51:443/TcpFull...
+2025-08-04 20:12:35,824 - INFO - Disconnection from 149.154.167.51:443/TcpFull complete!
+2025-08-04 20:12:35,826 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 20:12:37,381 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:12:52,260 - INFO - 📴 מקבל סיגנל עצירה...
+2025-08-04 20:18:40,908 - INFO - 🚀 מתחיל מעקב יציב...
+2025-08-04 20:18:40,908 - INFO - 📱 מתחבר לטלגרם...
+2025-08-04 20:18:40,908 - INFO - Connecting to 149.154.167.51:443/TcpFull...
+2025-08-04 20:18:42,687 - INFO - Connection to 149.154.167.51:443/TcpFull complete!
+2025-08-04 20:18:43,112 - INFO - Phone migrated to 4
+2025-08-04 20:18:43,195 - INFO - Reconnecting to new data center 4
+2025-08-04 20:18:43,296 - INFO - Disconnecting from 149.154.167.51:443/TcpFull...
+2025-08-04 20:18:43,297 - INFO - Disconnection from 149.154.167.51:443/TcpFull complete!
+2025-08-04 20:18:43,298 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 20:18:44,947 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:19:29,451 - INFO - ✅ התחברות הצליחה!
+2025-08-04 20:19:29,451 - INFO - 📋 קבוצות במעקב:
+2025-08-04 20:19:29,620 - INFO -    📱 Forex.Daddy SILVER (ID: -1002633249593)
+2025-08-04 20:19:29,789 - INFO -    📱 ynet חדשות (ID: -1001397114707)
+2025-08-04 20:19:29,991 - INFO -    📱 צופר - צבע אדום (ID: -1001436772127)
+2025-08-04 20:19:30,075 - INFO -    📱 קבוצה לבדיקה (ID: -4911850781)
+2025-08-04 20:19:30,075 - INFO - 🎧 מאזין יציב הותקן
+2025-08-04 20:19:30,076 - INFO - ⚡ הסקריפט עובד!
+2025-08-04 20:19:30,076 - INFO - 📱 שלח הודעה בקבוצה כדי לבדוק
+2025-08-04 20:19:49,712 - INFO - 📨 הודעה #1:
+2025-08-04 20:19:49,713 - INFO -    👥 קבוצה: קבוצה לבדיקה
+2025-08-04 20:19:49,713 - INFO -    👤 שולח: אטי
+2025-08-04 20:19:49,713 - INFO -    💬 תוכן: נ...
+2025-08-04 20:19:50,076 - INFO - ✅ נשלח לוובהוק! (זמן: 1.11 שניות)
+2025-08-04 20:19:56,800 - WARNING - Cannot get difference since the account is likely misusing the session: attempt to write a readonly database
+2025-08-04 20:19:56,801 - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
+2025-08-04 20:19:56,803 - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:19:56,803 - ERROR - Unhandled exception from keepalive_handle after cancelling <class '_asyncio.Task'> (<Task finished name='Task-8' coro=<UpdateMethods._keepalive_loop() done, defined at /Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/client/updates.py:481> exception=OperationalError('attempt to write a readonly database')>)
+Traceback (most recent call last):
+  File "/Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/helpers.py", line 176, in _cancel
+    await task
+  File "/Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/client/updates.py", line 517, in _keepalive_loop
+    self._save_states_and_entities()
+  File "/Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/client/telegrambaseclient.py", line 689, in _save_states_and_entities
+    self.session.process_entities(types.contacts.ResolvedPeer(None, [e._as_input_peer() for e in entities], []))
+  File "/Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: attempt to write a readonly database
+2025-08-04 20:19:56,819 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-22' coro=<TelegramBaseClient._disconnect_coro() done, defined at /Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/client/telegrambaseclient.py:702> exception=OperationalError('attempt to write a readonly database')>
+Traceback (most recent call last):
+  File "/Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/client/telegrambaseclient.py", line 732, in _disconnect_coro
+    self._save_states_and_entities()
+  File "/Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/client/telegrambaseclient.py", line 689, in _save_states_and_entities
+    self.session.process_entities(types.contacts.ResolvedPeer(None, [e._as_input_peer() for e in entities], []))
+  File "/Users/bengoproductions/Library/Python/3.9/lib/python/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: attempt to write a readonly database
+2025-08-04 20:19:57,529 - WARNING - ⚠️ החיבור נותק, מתחבר מחדש...
+2025-08-04 20:19:57,529 - INFO - 📱 מתחבר לטלגרם... (ניסיון 1/5)
+2025-08-04 20:19:57,530 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 20:19:57,607 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:19:57,608 - ERROR - ❌ שגיאה בהתחברות: attempt to write a readonly database
+2025-08-04 20:20:02,610 - INFO - 📱 מתחבר לטלגרם... (ניסיון 2/5)
+2025-08-04 20:20:02,696 - ERROR - ❌ שגיאה בהתחברות: attempt to write a readonly database
+2025-08-04 20:20:07,698 - INFO - 📱 מתחבר לטלגרם... (ניסיון 3/5)
+2025-08-04 20:20:07,782 - ERROR - ❌ שגיאה בהתחברות: attempt to write a readonly database
+2025-08-04 20:20:12,784 - INFO - 📱 מתחבר לטלגרם... (ניסיון 4/5)
+2025-08-04 20:20:12,867 - ERROR - ❌ שגיאה בהתחברות: attempt to write a readonly database
+2025-08-04 20:20:17,868 - INFO - 📱 מתחבר לטלגרם... (ניסיון 5/5)
+2025-08-04 20:20:17,947 - ERROR - ❌ שגיאה בהתחברות: attempt to write a readonly database
+2025-08-04 20:20:17,948 - ERROR - ❌ שגיאה בלולאה הראשית: attempt to write a readonly database
+2025-08-04 20:55:05,971 - INFO - Closing current connection to begin reconnect...
+2025-08-04 20:55:05,972 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 20:55:06,050 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 20:55:51,260 - INFO - Got difference for account updates
+2025-08-04 20:55:51,263 - INFO - 📨 הודעה #2:
+2025-08-04 20:55:51,263 - INFO -    👥 קבוצה: קבוצה לבדיקה
+2025-08-04 20:55:51,263 - INFO -    👤 שולח: אטי
+2025-08-04 20:55:51,263 - INFO -    💬 תוכן: ח...
+2025-08-04 20:55:51,264 - INFO - 📨 הודעה #3:
+2025-08-04 20:55:51,264 - INFO -    👥 קבוצה: קבוצה לבדיקה
+2025-08-04 20:55:51,265 - INFO -    👤 שולח: אטי
+2025-08-04 20:55:51,265 - INFO -    💬 תוכן: י...
+2025-08-04 20:55:51,265 - INFO - 📨 הודעה #4:
+2025-08-04 20:55:51,265 - INFO -    👥 קבוצה: קבוצה לבדיקה
+2025-08-04 20:55:51,265 - INFO -    👤 שולח: אטי
+2025-08-04 20:55:51,265 - INFO -    💬 תוכן: י...
+2025-08-04 20:55:51,603 - INFO - ✅ נשלח לוובהוק! (זמן: 0.34 שניות)
+2025-08-04 20:55:51,606 - INFO - ✅ נשלח לוובהוק! (זמן: 0.34 שניות)
+2025-08-04 20:55:51,607 - INFO - ✅ נשלח לוובהוק! (זמן: 0.34 שניות)
+2025-08-04 21:03:50,369 - INFO - 📨 הודעה #5:
+2025-08-04 21:03:50,370 - INFO -    👥 קבוצה: קבוצה לבדיקה
+2025-08-04 21:03:50,371 - INFO -    👤 שולח: אטי
+2025-08-04 21:03:50,371 - INFO -    💬 תוכן: חל...
+2025-08-04 21:03:50,618 - INFO - ✅ נשלח לוובהוק! (זמן: 0.69 שניות)
+2025-08-04 21:08:27,670 - INFO - Closing current connection to begin reconnect...
+2025-08-04 21:08:27,672 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-04 21:08:27,747 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-04 21:09:16,422 - INFO - Got difference for channel 1397114707 updates
+2025-08-04 21:09:16,424 - INFO - 📨 הודעה #6:
+2025-08-04 21:09:16,424 - INFO -    👥 קבוצה: ynet חדשות
+2025-08-04 21:09:16,424 - INFO -    👤 שולח: ynet חדשות
+2025-08-04 21:09:16,424 - INFO -    💬 תוכן: בישראל טוענים: טראמפ נתן "אור ירוק" למהלך עצים בעז...
+2025-08-04 21:09:16,945 - INFO - ✅ נשלח לוובהוק! (זמן: 0.52 שניות)
+2025-08-04 21:13:55,801 - INFO - Got difference for account updates
+2025-08-04 21:24:18,771 - INFO - 📨 הודעה #7:
+2025-08-04 21:24:18,772 - INFO -    👥 קבוצה: קבוצה לבדיקה
+2025-08-04 21:24:18,773 - INFO -    👤 שולח: אטי
+2025-08-04 21:24:18,773 - INFO -    💬 תוכן: לך...
+2025-08-04 21:24:19,119 - INFO - ✅ נשלח לוובהוק! (זמן: 0.78 שניות)
+2025-08-05 09:32:00,818 - INFO - 🚀 מתחיל מעקב יציב...
+2025-08-05 09:32:00,818 - INFO - 📱 מתחבר לטלגרם...
+2025-08-05 09:32:00,818 - INFO - Connecting to 149.154.167.51:443/TcpFull...
+2025-08-05 09:32:02,135 - INFO - Connection to 149.154.167.51:443/TcpFull complete!
+2025-08-05 09:32:02,561 - INFO - Phone migrated to 4
+2025-08-05 09:32:02,649 - INFO - Reconnecting to new data center 4
+2025-08-05 09:32:02,737 - INFO - Disconnecting from 149.154.167.51:443/TcpFull...
+2025-08-05 09:32:02,738 - INFO - Disconnection from 149.154.167.51:443/TcpFull complete!
+2025-08-05 09:32:02,739 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-08-05 09:32:04,342 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-08-05 09:32:34,073 - INFO - ✅ התחברות הצליחה!
+2025-08-05 09:32:34,074 - INFO - 📋 קבוצות במעקב:
+2025-08-05 09:32:34,235 - INFO -    📱 Forex.Daddy SILVER (ID: -1002633249593)
+2025-08-05 09:32:34,440 - INFO -    📱 ynet חדשות (ID: -1001397114707)
+2025-08-05 09:32:34,601 - INFO -    📱 צופר - צבע אדום (ID: -1001436772127)
+2025-08-05 09:32:34,687 - INFO -    📱 קבוצה לבדיקה (ID: -4911850781)
+2025-08-05 09:32:34,687 - INFO - 🎧 מאזין יציב הותקן
+2025-08-05 09:32:34,687 - INFO - ⚡ הסקריפט עובד!
+2025-08-05 09:32:34,688 - INFO - 📱 שלח הודעה בקבוצה כדי לבדוק
+2025-08-05 09:32:45,024 - INFO - 📨 הודעה #1:
+2025-08-05 09:32:45,025 - INFO -    👥 קבוצה: קבוצה לבדיקה
+2025-08-05 09:32:45,025 - INFO -    👤 שולח: אטי
+2025-08-05 09:32:45,025 - INFO -    💬 תוכן: לללל...
+2025-08-05 09:32:45,230 - INFO - ✅ נשלח לוובהוק! (זמן: 0.56 שניות)
+2025-08-05 09:36:08,560 - INFO - Got difference for account updates
+2025-08-05 09:42:28,658 - INFO - 📨 הודעה #2:
+2025-08-05 09:42:28,659 - INFO -    👥 קבוצה: קבוצה לבדיקה
+2025-08-05 09:42:28,660 - INFO -    👤 שולח: אטי
+2025-08-05 09:42:28,660 - INFO -    💬 תוכן: לך...
+2025-08-05 09:42:29,013 - INFO - ✅ נשלח לוובהוק! (זמן: 0.76 שניות)
+2025-08-05 09:43:34,389 - INFO - 📴 מקבל סיגנל עצירה...
+2025-08-05 09:43:35,171 - INFO - 🧹 מנקה ומתנתק...
+2025-08-05 09:43:35,171 - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
+2025-08-05 09:43:35,172 - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-08-05 09:43:35,176 - INFO - 🗑️ קובץ session נמחק
+2025-08-05 09:43:35,176 - INFO - 👋 הסקריפט נעצר

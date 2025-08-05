@@ -1,0 +1,29 @@
+{
+  "name": "Telegram Monitor",
+  "description": "Monitor Telegram groups and send messages to webhook",
+  "repository": "https://github.com/yourusername/telegram-monitor",
+  "keywords": ["python", "telegram", "monitor", "webhook"],
+  "env": {
+    "API_ID": {
+      "description": "Telegram API ID",
+      "value": "29517731"
+    },
+    "API_HASH": {
+      "description": "Telegram API Hash",
+      "value": "1ea4799dac3759058d07f2508979ecb2"
+    },
+    "PHONE": {
+      "description": "Phone number with country code",
+      "value": "+972508585661"
+    },
+    "WEBHOOK_URL": {
+      "description": "Webhook URL to send messages",
+      "value": "https://hook.eu1.make.com/xngg9dxi7nc0x5q5jhshb74xmhfpeg06"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+} 

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: telegram-monitor
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 stable_monitor.py
+    envVars:
+      - key: API_ID
+        value: 29517731
+      - key: API_HASH
+        value: 1ea4799dac3759058d07f2508979ecb2
+      - key: PHONE
+        value: +972508585661
+      - key: WEBHOOK_URL
+        value: https://hook.eu1.make.com/xngg9dxi7nc0x5q5jhshb74xmhfpeg06 
