@@ -1,1 +1,1 @@
-worker: python3 stable_monitor.py 
+worker: python3 cloud_monitor.py 

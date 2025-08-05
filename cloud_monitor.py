@@ -18,31 +18,30 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('telegram_monitor.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
 
-class StableTelegramMonitor:
+class CloudTelegramMonitor:
     def __init__(self):
-        # פרטי התחברות - מקבלים ממשתני סביבה או ערכים ברירת מחדל
+        # פרטי התחברות - מקבלים ממשתני סביבה
         self.api_id = os.getenv("API_ID", "29517731")
         self.api_hash = os.getenv("API_HASH", "1ea4799dac3759058d07f2508979ecb2")
         self.phone = os.getenv("PHONE", "+972508585661")
         self.webhook_url = os.getenv("WEBHOOK_URL", "https://hook.eu1.make.com/xngg9dxi7nc0x5q5jhshb74xmhfpeg06")
         
-        # שם קובץ session ייחודי
-        self.session_name = f'session_{int(time.time())}'
+        # שם קובץ session קבוע לענן
+        self.session_name = 'telegram_cloud_session'
         
         # יצירת לקוח
         self.client = TelegramClient(
             self.session_name, 
             self.api_id, 
             self.api_hash,
-            connection_retries=5,
-            retry_delay=2,
-            timeout=20,
+            connection_retries=10,
+            retry_delay=3,
+            timeout=30,
             auto_reconnect=True
         )
         
@@ -71,10 +70,10 @@ class StableTelegramMonitor:
     async def start(self):
         """התחלת החיבור והמעקב"""
         try:
-            logger.info("🚀 מתחיל מעקב יציב...")
+            logger.info("🚀 מתחיל מעקב ענן...")
             
-            # התחברות
-            await self.connect()
+            # התחברות עם ניסיונות מרובים
+            await self.connect_with_retry()
             
             # הדפסת מידע על הקבוצות
             await self.print_group_info()
@@ -82,8 +81,8 @@ class StableTelegramMonitor:
             # הגדרת מאזין להודעות
             self.setup_message_handler()
             
-            logger.info("🎧 מאזין יציב הותקן")
-            logger.info("⚡ הסקריפט עובד!")
+            logger.info("🎧 מאזין ענן הותקן")
+            logger.info("☁️ הסקריפט עובד על Railway!")
             logger.info("📱 שלח הודעה בקבוצה כדי לבדוק")
             
             # לולאה ראשית
@@ -92,48 +91,63 @@ class StableTelegramMonitor:
                     # בדיקה שהחיבור פעיל
                     if not self.client.is_connected():
                         logger.warning("⚠️ החיבור נותק, מתחבר מחדש...")
-                        await self.connect()
+                        await self.connect_with_retry()
                     
                     # המתנה קצרה
-                    await asyncio.sleep(2)
+                    await asyncio.sleep(5)
                     
                 except Exception as e:
-                    logger.error(f"❌ שגיאה בלולאה הראשית: {e}")
+                    logger.error(f"❌ שגיאה בלולאה ראשית: {e}")
                     await asyncio.sleep(10)
-            
+                    
         except Exception as e:
             logger.error(f"❌ שגיאה קריטית: {e}")
-        finally:
             await self.cleanup()
-    
-    async def connect(self):
-        """התחברות לטלגרם"""
-        try:
-            logger.info("�� מתחבר לטלגרם...")
             
-            # ניסיון התחברות עם טיפול טוב יותר בסביבת ענן
+    async def connect_with_retry(self):
+        """התחברות עם ניסיונות מרובים"""
+        max_retries = 5
+        for attempt in range(max_retries):
             try:
+                logger.info(f"📱 מתחבר לטלגרם... (ניסיון {attempt + 1}/{max_retries})")
+                
+                # בדיקה אם יש קובץ session קיים
+                if os.path.exists(f"{self.session_name}.session"):
+                    logger.info("📁 נמצא קובץ session קיים")
+                
                 await self.client.start(phone=self.phone)
                 logger.info("✅ התחברות הצליחה!")
+                return
+                
             except SessionPasswordNeededError:
                 logger.error("🔐 נדרשת סיסמה דו-שלבית")
                 raise
             except Exception as e:
-                if "EOF when reading a line" in str(e):
-                    logger.warning("⚠️ נדרש אימות ראשוני - הסקריפט יחכה לפעולה ידנית")
+                error_msg = str(e)
+                if "EOF when reading a line" in error_msg:
+                    logger.warning("⚠️ נדרש אימות ראשוני")
                     logger.info("📱 שלח הודעה לטלגרם עם קוד אימות")
                     logger.info("🔐 הזן את הקוד בלוגים של Railway")
-                    # נסה שוב אחרי המתנה
+                    
+                    # נסה שוב אחרי המתנה ארוכה יותר
+                    wait_time = (attempt + 1) * 10
+                    logger.info(f"⏳ מחכה {wait_time} שניות לפני ניסיון נוסף...")
+                    await asyncio.sleep(wait_time)
+                    
+                elif "database is locked" in error_msg:
+                    logger.warning("🔒 מסד נתונים נעול, מחכה...")
                     await asyncio.sleep(5)
-                    await self.client.start(phone=self.phone)
-                    logger.info("✅ התחברות הצליחה אחרי אימות!")
+                    
                 else:
                     logger.error(f"❌ שגיאה בהתחברות: {e}")
-                    raise
-                    
-        except Exception as e:
-            logger.error(f"❌ שגיאה בהתחברות: {e}")
-            raise
+                    if attempt < max_retries - 1:
+                        wait_time = (attempt + 1) * 5
+                        logger.info(f"⏳ מחכה {wait_time} שניות לפני ניסיון נוסף...")
+                        await asyncio.sleep(wait_time)
+                    else:
+                        raise
+        
+        raise Exception("❌ לא הצלחתי להתחבר אחרי כל הניסיונות")
     
     async def print_group_info(self):
         """הדפסת מידע על הקבוצות"""
@@ -215,52 +229,49 @@ class StableTelegramMonitor:
     async def send_to_webhook(self, data):
         """שליחה לוובהוק"""
         try:
-            timeout = aiohttp.ClientTimeout(total=10)
+            timeout = aiohttp.ClientTimeout(total=15)
             async with aiohttp.ClientSession(timeout=timeout) as session:
                 async with session.post(
                     self.webhook_url,
                     json=data,
                     headers={'Content-Type': 'application/json'},
                 ) as response:
-                    return response.status == 200
-        except asyncio.TimeoutError:
-            logger.error("⏰ timeout בשליחת וובהוק")
-            return False
+                    if response.status == 200:
+                        return True
+                    else:
+                        logger.error(f"❌ שגיאה בוובהוק: {response.status}")
+                        return False
         except Exception as e:
             logger.error(f"❌ שגיאה בשליחת וובהוק: {e}")
             return False
     
     async def cleanup(self):
-        """ניקוי לפני יציאה"""
-        logger.info("🧹 מנקה ומתנתק...")
-        if self.client.is_connected():
-            await self.client.disconnect()
-        
-        # מחיקת קובץ session
+        """ניקוי ומתנתקות"""
         try:
-            if os.path.exists(f"{self.session_name}.session"):
-                os.remove(f"{self.session_name}.session")
-                logger.info("🗑️ קובץ session נמחק")
-        except:
-            pass
-            
-        logger.info("👋 הסקריפט נעצר")
+            logger.info("🧹 מנקה ומתנתק...")
+            if self.client.is_connected():
+                await self.client.disconnect()
+            logger.info("👋 הסקריפט נעצר")
+        except Exception as e:
+            logger.error(f"❌ שגיאה בניקוי: {e}")
 
 async def main():
     """פונקציה ראשית"""
-    monitor = StableTelegramMonitor()
-    await monitor.start()
+    monitor = CloudTelegramMonitor()
+    try:
+        await monitor.start()
+    except KeyboardInterrupt:
+        logger.info("📴 מקבל סיגנל עצירה...")
+    except Exception as e:
+        logger.error(f"❌ שגיאה קריטית: {e}")
+    finally:
+        await monitor.cleanup()
 
 if __name__ == "__main__":
-    print("🚀 מתחיל מעקב יציב אחרי הודעות טלגרם...")
-    print("⚡ הסקריפט יעבוד ביציבות ובמהירות")
+    print("🚀 מתחיל מעקב ענן אחרי הודעות טלגרם...")
+    print("☁️ הסקריפט יעבוד על Railway")
     print("🔗 כל הודעה תישלח לוובהוק מיד")
     print("⏹️  לחץ Ctrl+C כדי לעצור")
     print("-" * 60)
     
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\n👋 הסקריפט נעצר")
-    except Exception as e:
-        print(f"❌ שגיאה: {e}") 
+    asyncio.run(main()) 
