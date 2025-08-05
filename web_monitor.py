@@ -231,7 +231,7 @@ class WebTelegramMonitor:
                         <p>🕒 הודעה אחרונה: <span id="last-message">אין</span></p>
                     </div>
                     
-                    <div class="auth-form" id="auth-form" style="display: none;">
+                    <div class="auth-form" id="auth-form">
                         <h3>🔐 התחברות לטלגרם</h3>
                         <p>שלח הודעה לטלגרם עם קוד אימות וזן אותו כאן:</p>
                         <form id="auth-code-form">
@@ -241,6 +241,7 @@ class WebTelegramMonitor:
                             </div>
                             <button type="submit" class="btn">🔐 התחבר</button>
                         </form>
+                        <div id="auth-status" style="margin-top: 10px; padding: 10px; border-radius: 5px; display: none;"></div>
                     </div>
                     
                     <div style="margin: 20px 0;">
@@ -268,6 +269,7 @@ class WebTelegramMonitor:
                         const statusText = document.getElementById('status-text');
                         const statusIndicator = document.querySelector('.status-indicator');
                         const authForm = document.getElementById('auth-form');
+                        const authStatus = document.getElementById('auth-status');
                         const messageCount = document.getElementById('message-count');
                         const lastMessage = document.getElementById('last-message');
                         
@@ -275,11 +277,21 @@ class WebTelegramMonitor:
                         statusText.textContent = data.status;
                         statusIndicator.className = 'status-indicator status-' + data.status_type;
                         
-                        // הצגת/הסתרת טופס אימות
+                        // הצגת/הסתרת הודעות סטטוס אימות
                         if (data.needs_auth) {
-                            authForm.style.display = 'block';
+                            authStatus.style.display = 'block';
+                            authStatus.style.background = '#fff3cd';
+                            authStatus.style.color = '#856404';
+                            authStatus.style.border = '1px solid #ffeaa7';
+                            authStatus.textContent = '⚠️ נדרש קוד אימות - שלח הודעה לטלגרם עם קוד וזן אותו למעלה';
+                        } else if (data.is_connected) {
+                            authStatus.style.display = 'block';
+                            authStatus.style.background = '#d4edda';
+                            authStatus.style.color = '#155724';
+                            authStatus.style.border = '1px solid #c3e6cb';
+                            authStatus.textContent = '✅ מחובר בהצלחה! המערכת עובדת';
                         } else {
-                            authForm.style.display = 'none';
+                            authStatus.style.display = 'none';
                         }
                         
                         // עדכון סטטיסטיקות
@@ -316,7 +328,23 @@ class WebTelegramMonitor:
                     e.preventDefault();
                     
                     const authCode = document.getElementById('auth-code').value;
-                    if (!authCode) return;
+                    const authStatus = document.getElementById('auth-status');
+                    
+                    if (!authCode) {
+                        authStatus.style.display = 'block';
+                        authStatus.style.background = '#f8d7da';
+                        authStatus.style.color = '#721c24';
+                        authStatus.style.border = '1px solid #f5c6cb';
+                        authStatus.textContent = '❌ אנא הזן קוד אימות';
+                        return;
+                    }
+                    
+                    // הצגת הודעת טעינה
+                    authStatus.style.display = 'block';
+                    authStatus.style.background = '#d1ecf1';
+                    authStatus.style.color = '#0c5460';
+                    authStatus.style.border = '1px solid #bee5eb';
+                    authStatus.textContent = '⏳ מתחבר...';
                     
                     try {
                         const response = await fetch('/auth', {
@@ -329,14 +357,23 @@ class WebTelegramMonitor:
                         
                         const result = await response.json();
                         if (result.success) {
-                            alert('✅ התחברות הצליחה!');
+                            authStatus.style.background = '#d4edda';
+                            authStatus.style.color = '#155724';
+                            authStatus.style.border = '1px solid #c3e6cb';
+                            authStatus.textContent = '✅ התחברות הצליחה! המערכת עובדת';
                             document.getElementById('auth-code').value = '';
                             refreshStatus();
                         } else {
-                            alert('❌ שגיאה בהתחברות: ' + result.error);
+                            authStatus.style.background = '#f8d7da';
+                            authStatus.style.color = '#721c24';
+                            authStatus.style.border = '1px solid #f5c6cb';
+                            authStatus.textContent = '❌ שגיאה בהתחברות: ' + result.error;
                         }
                     } catch (error) {
-                        alert('❌ שגיאה בשליחת הקוד');
+                        authStatus.style.background = '#f8d7da';
+                        authStatus.style.color = '#721c24';
+                        authStatus.style.border = '1px solid #f5c6cb';
+                        authStatus.textContent = '❌ שגיאה בשליחת הקוד';
                     }
                 });
                 
